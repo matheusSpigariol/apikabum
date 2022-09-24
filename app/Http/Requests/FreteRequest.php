@@ -16,8 +16,8 @@ class FreteRequest extends FormRequest
     {
         return [
             'dimensao' => 'required',
-            'dimensao.altura' => 'required|numeric',
-            'dimensao.largura' => 'required|numeric',
+            'dimensao.altura' => 'required|numeric|min:5|max:200',
+            'dimensao.largura' => 'required|numeric|min:6|max:140',
             'peso' => 'required|numeric|gt:0'
         ];
     }
@@ -27,7 +27,9 @@ class FreteRequest extends FormRequest
         return[
             'required' => 'O campo :attribute é obrigatório',
             'numeric' => 'O campo :attribute deve ser um número',
-            'gt' => 'O campo :attribute deve ser maior que 0',
+            'gt' => 'O campo :attribute deve ser maior que 0 gramas',
+            'min' => 'O campo :attribute deve ter no mínimo :min centímetros',
+            'max' => 'O campo :attribute deve ter no máximo :max centímetros'
         ];
     }
 }
