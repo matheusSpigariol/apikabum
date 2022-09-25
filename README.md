@@ -60,7 +60,7 @@ host/api/frete
 
     {
         "dimensao": {
-            "altura": {altura_pacote}
+            "altura": {altura_pacote},
             "largura": {largura_pacote}
         },
         "peso": {peso_pacote},
@@ -71,13 +71,13 @@ host/api/frete
 
     [
         {
-            "nome": "{tipo_entrega}"
-            "valor_frete": {valor_frete}
+            "nome": "{tipo_entrega}",
+            "valor_frete": {valor_frete},
             "prazo_dias": {prazo_dias}
         },
         {
-            "nome": "{tipo_entrega}"
-            "valor_frete": {valor_frete}
+            "nome": "{tipo_entrega}",
+            "valor_frete": {valor_frete},
             "prazo_dias": {prazo_dias}
         },
     ]
@@ -110,12 +110,12 @@ host/api/frete
 
 ### Exemplo Requisição
 
-> Endpoint
+#### Endpoint
 ~~~
 http://127.0.0.1:8000/api/frete
 ~~~
 
-> Corpo
+#### Corpo
     {
         "dimensao": {
             "altura": 120,
@@ -124,16 +124,16 @@ http://127.0.0.1:8000/api/frete
         "peso": 50
     }
 
-> Resposta
+#### Resposta
     [
         {
-            "nome": "Entrega Ninja",
-            "valor_frete": 1.5,
+            "nome": "Entrega Ninja"
+            "valor_frete": 1.5
             "prazo_dias": 6
-	    },
+        },
         {
-            "nome": "Entrega Kabum",
-            "valor_frete": 1,
+            "nome": "Entrega Kabum"
+            "valor_frete": 1
             "prazo_dias": 4
-        }
+        },
     ]
