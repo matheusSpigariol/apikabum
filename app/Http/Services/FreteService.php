@@ -9,6 +9,8 @@ class FreteService
     private $altura;
     private $largura;
     private $peso;
+    private $tiposFrete;
+
     private $constDiv = 10;
     
     public function __construct($altura, $largura, $peso)
@@ -16,6 +18,7 @@ class FreteService
         $this->altura = $altura;
         $this->largura = $largura;
         $this->peso = $peso;
+        $this->tiposFrete = $this->getTipoFrete();
     }
 
     public function buscaEntrega()
@@ -23,7 +26,7 @@ class FreteService
         //array responsavel pela validação das dimensões
         $validaDimensao = [];
 
-        //simulando uma chamda de API que retorna os tipos de fretes
+        //verifica e retorna os tipos de frete que possuem a dimensão de altura adequada
         $validaDimensao['altura'] = $this->verificaDimensaoAltura($this->altura);
         
         //verifica e retorna os tipos de frete que possuem a dimensão de largura adequada
@@ -40,31 +43,31 @@ class FreteService
 
         private function verificaDimensaoAltura($dimensao)
     {
-        $tiposFrete = $this->getTipoFrete();
         $tipoEntrega = [];
-        foreach ($tiposFrete as $tipoFrete) {
+        foreach ($this->tiposFrete as $tipoFrete) {
             if($dimensao >= $tipoFrete->alturaMin && $dimensao <= $tipoFrete->alturaMax) $tipoEntrega [] = $tipoFrete->nome;
         }
 
         return $tipoEntrega;
     }
 
-    private function verificaDimensaoLargura($dimensao)
+    private function verificaDimensaoLargura($dimensao
+    )
     {
-        $tiposFrete = $this->getTipoFrete();
         $tipoEntrega = [];
-        foreach ($tiposFrete as $tipoFrete) {
+        foreach ($this->tiposFrete as $tipoFrete) {
             if($dimensao >= $tipoFrete->larguraMin && $dimensao <= $tipoFrete->larguraMax) $tipoEntrega [] = $tipoFrete->nome;
         }
 
         return $tipoEntrega;
     }
 
-    private function verificaFrete($dimensoes)
+    private function verificaFrete($dimensoes
+    )
     {
         $tipoEntrega = [];
-        $tiposFrete = $this->getTipoFrete();
-        foreach ($tiposFrete as $tipoFrete) {
+        
+        foreach ($this->tiposFrete as $tipoFrete) {
             if(in_array($tipoFrete->nome, $dimensoes['altura']) && in_array($tipoFrete->nome, $dimensoes['largura']))
             $tipoEntrega [] = $tipoFrete->nome;
         }
@@ -75,9 +78,8 @@ class FreteService
     private function verificaTipoEntrega($tipoEntrega, $peso)
     {
         $entregas = [];
-        $tiposFrete = $this->getTipoFrete();
 
-        foreach ($tiposFrete as $tipoFrete) {
+        foreach ($this->tiposFrete as $tipoFrete) {
             if(in_array($tipoFrete->nome, $tipoEntrega)){
                 $novaEntrega = new stdClass();
                 $novaEntrega->nome = "Entrega ".$tipoFrete->nome;
@@ -91,6 +93,7 @@ class FreteService
         return $entregas;
     }
 
+    //simulando uma chamda de API que retorna os tipos de fretes
     public function getTipoFrete()
     {
         $arrayTipoFrete  = [
