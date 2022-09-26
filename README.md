@@ -3,10 +3,10 @@
 ## Sobre o projeto
 > Este projeto consiste em uma aplicação criada em PHP, com o framework [Laravel](https://laravel.com/), para o calculo e seleção do tipo de frete, baseado no peso e dimensões do pacote.
 
-## Pacotes utilizados
+## Tecnologias utilizados
 ### Requisitos do projeto
 
-Pacote   | Versão
+Tecnologia   | Versão
 --------- | ------
 [PHP](https://laravel.com/docs/9.x) | ^8.1.2
 [Laravel](https://laravel.com/docs/9.x) | ^9.31.0
